@@ -40,10 +40,14 @@
  */
 if ( ! function_exists('heading'))
 {
-	function heading($data = '', $h = '1', $attributes = '')
+	function heading($data = '', $small = '', $h = '1', $attributes = '')
 	{
+
 		$attributes = ($attributes != '') ? ' '.$attributes : $attributes;
-		return "<h".$h.$attributes.">".$data."</h".$h.">";
+		if($small)$small = " <small>".$small."</small>";
+
+		return "<h".$h.$attributes.">".$data.$small."</h".$h.">\n";
+
 	}
 }
 
@@ -428,6 +432,68 @@ if ( ! function_exists('nbs'))
 	function nbs($num = 1)
 	{
 		return str_repeat("&nbsp;", $num);
+	}
+}
+
+if ( ! function_exists('html_comment'))
+{
+	function html_comment($comment)
+	{
+		$str = "";
+		$str = "<!-- ".$comment." -->\n";
+		return $str;
+	}
+}
+
+if ( ! function_exists('title'))
+{
+	function title($title)
+	{
+		$str = "";
+		$str = "<title>".$title."</title>\n";
+		return $str;
+	}
+}
+
+if ( ! function_exists('html'))
+{
+	function html($close = '')
+	{
+		$str = '';
+		if($close == '/'){
+			$str = "</html>";
+		} else {
+			$str = "<html>\n";
+		}
+		return $str;
+	}
+}
+
+if ( ! function_exists('head'))
+{
+	function head($close = '')
+	{
+		$str = '';
+		if($close == '/'){
+			$str = "</head>\n";
+		} else {
+			$str = "<head>\n";
+		}
+		return $str;
+	}
+}
+
+if ( ! function_exists('body'))
+{
+	function body($close = '')
+	{
+		$str = '';
+		if($close == '/'){
+			$str = "\n</body>\n";
+		} else {
+			$str = "<body>\n";
+		}
+		return $str;
 	}
 }
 
