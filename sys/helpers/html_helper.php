@@ -485,18 +485,55 @@ if ( ! function_exists('head'))
 
 if ( ! function_exists('body'))
 {
-	function body($close = '')
+	function body($attributes = '', $close = FALSE)
 	{
 		$str = '';
-		if($close == '/'){
+		if($close){
 			$str = "\n</body>\n";
 		} else {
-			$str = "<body>\n";
+			$str = "<body"._attributes($attributes).">\n";
 		}
 		return $str;
 	}
 }
 
+if ( ! function_exists('div'))
+{
+	function div($attributes = '', $close = FALSE)
+	{
+		$str = '';
+		if($close){
+			$str = "\n</div>\n";
+		} else {
+			$str = "<div"._attributes($attributes).">\n";
+		}
+		return $str;
+	}
+}
+
+if ( ! function_exists('_attributes'))
+{
+
+	/*
+	| Passa os atributos passados em forma de array.
+	*/
+	function _attributes($attributes)
+	{
+		if(is_array($attributes))
+		{
+			$atr = '';
+			foreach($attributes as $key => $value)
+			{
+				$atr .= " " . $key . "=\"".$value."\" ";
+			}
+			return $atr;
+		} 
+		elseif (is_string($attributes) and strlen($attributes) > 0) 
+		{
+			$atr = ' ' . $attributes;
+		}
+	}
+}
 
 /* End of file html_helper.php */
 /* Location: ./system/helpers/html_helper.php */
