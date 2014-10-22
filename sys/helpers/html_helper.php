@@ -457,11 +457,11 @@ if ( ! function_exists('title'))
 
 if ( ! function_exists('html'))
 {
-	function html($close = '')
+	function html($close = FALSE)
 	{
 		$str = '';
-		if($close == '/'){
-			$str = "</html>";
+		if($close){
+			$str = "\n</html>";
 		} else {
 			$str = "<html>\n";
 		}
@@ -471,10 +471,10 @@ if ( ! function_exists('html'))
 
 if ( ! function_exists('head'))
 {
-	function head($close = '')
+	function head($close = FALSE)
 	{
 		$str = '';
-		if($close == '/'){
+		if($close){
 			$str = "</head>\n";
 		} else {
 			$str = "<head>\n";
@@ -508,6 +508,14 @@ if ( ! function_exists('div'))
 			$str = "<div"._attributes($attributes).">\n";
 		}
 		return $str;
+	}
+}
+
+if ( ! function_exists('hr'))
+{
+	function hr($attributes = '')
+	{
+			return "<hr"._attributes($attributes)."/>\n";
 	}
 }
 
