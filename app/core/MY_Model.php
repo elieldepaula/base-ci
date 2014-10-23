@@ -21,23 +21,23 @@ class MY_Model extends CI_Model {
     public function list_all(){
         return $this->db->get($this->table_name);
     }
-
-    public function list_by_field($field, $value){
-        $this->db->where($field, $value);
-        return $this->db->get($this->table_name);
-    }
     
     public function count_all() {
         return $this->db->count_all($this->table_name);
     }
     
-    public function get_paged_list($offset = 0, $limit = 10){
-        $this->db->order_by($this->primary_key,'asc');
+    public function get_paged_list($offset = 0, $limit = 10, $order = 'asc'){
+        $this->db->order_by($this->primary_key, $order);
         return $this->db->get($this->table_name, $limit, $offset);
     }
     
     public function get_by_id($id) {
         $this->db->where($this->primary_key, $id);
+        return $this->db->get($this->table_name);
+    }
+
+    public function get_by_field($field, $value){
+        $this->db->where($field, $value);
         return $this->db->get($this->table_name);
     }
     
