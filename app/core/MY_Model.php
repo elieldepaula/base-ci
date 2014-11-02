@@ -36,8 +36,14 @@ class MY_Model extends CI_Model {
         return $this->db->get($this->table_name);
     }
 
-    public function get_by_field($field, $value){
-        $this->db->where($field, $value);
+    public function get_by_field($field, $value = null){
+        if (is_array($field)){
+            foreach ($field as $key => $value) {
+                $this->db->where($key, $value);
+            }
+        } else {
+            $this->db->where($field, $value);
+        }
         return $this->db->get($this->table_name);
     }
     
