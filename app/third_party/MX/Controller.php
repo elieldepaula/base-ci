@@ -15,8 +15,8 @@ require dirname(__FILE__).'/Base.php';
  *
  * Install this file as application/third_party/MX/Controller.php
  *
- * @copyright	Copyright (c) 2011 Wiredesignz
- * @version 	5.4
+ * @copyright	Copyright (c) 2015 Wiredesignz
+ * @version 	5.5
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,57 @@ require dirname(__FILE__).'/Base.php';
  **/
 class MX_Controller 
 {
+	
 	public $autoload = array();
+	
+	/**
+    * Enable or disable CodeIgniter profiler.
+    * 
+    * $var $wpn_profiler
+    */
+	var $wpn_profiler = FALSE;
+
+    /**
+    * Default template folder.
+    * 
+    * $var $wpn_template
+    */
+	var $wpn_template = 'default';
+
+    /**
+    * Default posts view list.
+    * 
+    * $var $wpn_posts_view
+    */
+	var $wpn_posts_view = 'list';
+
+    /**
+    * Default column number.
+    * 
+    * $var $wpn_cols_mosaic
+    */
+    var $wpn_cols_mosaic = 3;
+
+    /**
+    * Common data to header view.
+    * 
+    * $var $data_header
+    */
+    var $data_header = array();
+
+    /**
+    * Common data to content view.
+    * 
+    * $var $data_content
+    */
+    var $data_content = array();
+
+    /**
+    * Common data to footer.
+    * 
+    * $var $data_footer
+    */
+    var $data_footer = array();
 	
 	public function __construct() 
 	{
@@ -52,9 +102,28 @@ class MX_Controller
 		
 		/* autoload module items */
 		$this->load->_autoloader($this->autoload);
+		$this->output->enable_profiler($this->wpn_profiler);
 	}
 	
-	public function __get($class) {
+	public function __get($class) 
+	{
 		return CI::$APP->$class;
 	}
+	
+	/**
+    * The render () method encapsulates the common code of views. It was 
+    * thought that you will carry the views header, content and footer 
+    * on each method in the controller.
+    *
+    * If you need to, you can change this method depending on your project.
+    *
+    * @param $view string Name of the view.
+    * @return void
+    */
+	public function render($view) 
+    {
+        $this->load->view($this->wpn_template.'/header', $this->data_header);
+        $this->load->view($this->wpn_template.'/'.$view, $this->data_content);
+        $this->load->view($this->wpn_template.'/footer', $this->data_footer);
+    }
 }

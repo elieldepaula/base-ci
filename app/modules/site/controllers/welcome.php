@@ -1,7 +1,22 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends MX_Controller {
 
+	function __construct() 
+    {
+        /*
+        * Here are some options provided by the MY_Controller class, you
+        * can adjust as you need to your project.
+        */
+        // Enable the CodeIgniter Profile.
+        // $this->wpn_profiler = FALSE;
+        // Chose the template folder.
+        // $this->wpn_template = 'default';
+        // Setup the 'col' number of the mosaic views.
+        // $this->wpn_cols_mosaic = 3;
+        parent::__construct();
+    }
+	
 	/**
 	 * Index Page for this controller.
 	 *
@@ -19,7 +34,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->render('welcome');
 	}
 
 }
