@@ -4,7 +4,7 @@
 
 Trata-se de algumas melhorias que eu fiz ao Framework CodeIgniter. Algumas eu trouxe de outros excelentes projetos Open Source e algumas eu mesmo desenvolvi.
 
-- Atualizado para CodeIgniter 3.0.6
+- Atualizado para CodeIgniter 3.1.0
 - Preparado para trabalhar com padrão MVC ou HMVC;
 - Preparado para trabalhar com Widgets;
 - Facilidades adicionadas aos controllers;

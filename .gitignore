@@ -1,0 +1,2 @@
+app/sessions/wpanel_*
+app/db/*.sqlite
